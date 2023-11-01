@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { User } from '@prisma/client';
 import { PrismaService } from 'src/prisma/prisma.service';
-
+// TODO : Create service for repo and controller.
 @Injectable()
 export class UserRepository {
   constructor(private prisma: PrismaService) {}
@@ -82,7 +82,6 @@ export class UserRepository {
 
   async checkIfUserExistByEmailOrNickname(
     email: string,
-    nickname: string,
   ): Promise<User | null> {
     return this.prisma.user.findFirst({
       where: {

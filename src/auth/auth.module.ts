@@ -1,9 +1,22 @@
 import { Module } from '@nestjs/common';
-import { AppService } from '../app.service';
+import { JwtModule } from '@nestjs/jwt';
+import { PrismaService } from 'src/prisma/prisma.service';
+import { UserRepository } from '../user/repository/user.repository';
+import { UserService } from '../user/service/user.service';
+import { AuthController } from './controller/auth.controller';
+import { AuthService } from './service/auth.service';
+import { AccessTokenStrategy, RefreshTokenStrategy } from './strategies';
 
 @Module({
-  imports: [],
-  controllers: [],
-  providers: [AppService],
+  imports: [JwtModule.register({})],
+  providers: [
+    AuthService,
+    UserService,
+    UserRepository,
+    PrismaService,
+    RefreshTokenStrategy,
+    AccessTokenStrategy,
+  ],
+  controllers: [AuthController],
 })
-export class AppModule {}
+export class AuthModule {}

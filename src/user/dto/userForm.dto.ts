@@ -10,7 +10,9 @@ import { Match } from "../../common/decorators";
 
 export class UserFormDto {
   @IsNotEmpty()
-  nickname: string;
+  name: string;
+  @IsNotEmpty()
+  first_name: string;
   @IsNotEmpty()
   @IsEmail()
   email: string;
