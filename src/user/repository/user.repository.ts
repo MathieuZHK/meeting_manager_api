@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { User } from '@prisma/client';
 import { PrismaService } from 'src/prisma/prisma.service';
-// TODO : Create service for repo and controller.
 @Injectable()
 export class UserRepository {
   constructor(private prisma: PrismaService) {}
