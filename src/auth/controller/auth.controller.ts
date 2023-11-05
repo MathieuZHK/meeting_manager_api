@@ -18,6 +18,7 @@ import { UserFormDto } from '../../user/dto/userForm.dto';
 import { AuthDto } from '../dto/auth.dto';
 import { AuthService } from '../service/auth.service';
 import { Tokens } from '../types';
+import { Roles } from "../../common/decorators/roles.decorator";
 
 @Controller('auth')
 export class AuthController {

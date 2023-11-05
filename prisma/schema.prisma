@@ -17,5 +17,36 @@ model User {
   first_name     String
   password       String
   refresh_token  String?
+  role           String?
   is_active      Boolean
+  enterprise     Enterprise @relation(fields: [enterprise_id], references: [id], onDelete: Cascade)
+  enterprise_id  String
+
+  @@index([enterprise_id])
+}
+
+model Enterprise {
+  id             String   @unique @default(uuid())
+  name           String   @unique
+  email          String?  @unique
+  phone          Int      @unique
+  user           User[]
+  features       FeatureOnEnterprise[]
+}
+
+model FeatureOnEnterprise {
+  id             String @unique @default(uuid())
+  enterprise_id  String
+  feature_id     String
+  enterprise     Enterprise @relation(fields: [enterprise_id], references: [id], onDelete: Cascade)
+  feature        Feature @relation(fields: [feature_id], references: [id], onDelete: Cascade)
+
+  @@index([enterprise_id])
+  @@index([feature_id])
+}
+
+model Feature {
+  id             String @unique @default(uuid())
+  name           String @unique
+  enterprise     FeatureOnEnterprise[]
 }
