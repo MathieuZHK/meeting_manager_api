@@ -14,8 +14,8 @@ describe('AppController', () => {
   });
 
   describe('root', () => {
-    it('should return "Hello World!"', () => {
-      expect(appController.getHello()).toBe('Hello World!');
+    it('should return "Welcome to the meeting manager api 2023.1.0.alpha1"', () => {
+      expect(appController.getHello()).toBe('Welcome to the meeting manager api 2023.1.0.alpha1');
     });
   });
 });

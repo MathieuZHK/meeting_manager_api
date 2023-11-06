@@ -1,12 +1,13 @@
 import {
-  IsEmail,
+  IsEmail, isNotEmpty,
   IsNotEmpty,
   IsString,
   Matches,
   MaxLength,
-  MinLength,
-} from 'class-validator';
+  MinLength
+} from "class-validator";
 import { Match } from "../../common/decorators";
+import { Role } from "../../common/enums/role.enum";
 
 export class UserFormDto {
   @IsNotEmpty()
@@ -31,4 +32,8 @@ export class UserFormDto {
   confirmPassword: string;
   oldPassword: string;
   isActive: boolean;
+  @IsNotEmpty()
+  enterprise_id: string;
+  @IsNotEmpty()
+  role: Role;
 }

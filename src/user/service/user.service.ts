@@ -27,6 +27,8 @@ export class UserService {
         is_active: true,
         password: hash,
         refresh_token: null,
+        enterprise_id: data.enterprise_id,
+        role: data.role
       };
       return await this.repository.createUser(userConverter);
     }
@@ -93,6 +95,8 @@ export class UserService {
       is_active: data.isActive,
       password: hash,
       refresh_token: null,
+      enterprise_id: data.enterprise_id,
+      role: data.role
     };
 
     return userEntity;
@@ -105,6 +109,7 @@ export class UserService {
       first_name: userEntity.first_name,
       email: userEntity.email,
       is_active: userEntity.is_active,
+      role: userEntity.role
     };
 
     return userDto;

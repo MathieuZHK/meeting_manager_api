@@ -14,6 +14,7 @@ export class UserRepository {
         email_verified: data.email_verified,
         is_active: data.is_active,
         password: data.password,
+        enterprise_id: data.enterprise_id
       },
     });
   }
