@@ -21,7 +21,9 @@ export class AuthService {
       newUser.id,
       newUser.email,
       newUser.name,
-      newUser.first_name
+      newUser.first_name,
+      newUser.enterprise_id,
+      newUser.role
     );
     await this.updateRefreshTokenHash(newUser.id, tokens.refresh_token);
     return tokens;
@@ -33,7 +35,8 @@ export class AuthService {
     if (!user) throw new ForbiddenException('Access denied');
     const passwordMatches = await bcrypt.compare(dto.password, user.password);
     if (!passwordMatches) throw new ForbiddenException('Access denied');
-    const tokens = await this.getTokens(user.id, user.email, user.name, user.first_name);
+    const tokens = await this.getTokens(user.id, user.email, user.name, user.first_name,
+      user.enterprise_id, user.role);
     await this.updateRefreshTokenHash(user.id, tokens.refresh_token);
     return tokens;
   }
@@ -57,7 +60,8 @@ export class AuthService {
       user.refresh_token,
     );
     if (!refreshTokenMatches) throw new ForbiddenException('Access denied');
-    const tokens = await this.getTokens(user.id, user.email, user.name, user.first_name);
+    const tokens = await this.getTokens(user.id, user.email, user.name, user.first_name,
+      user.enterprise_id, user.role);
     await this.updateRefreshTokenHash(user.id, user.refresh_token);
     return tokens;
   }
@@ -66,7 +70,9 @@ export class AuthService {
     userId: string,
     email: string,
     name: string,
-    first_name: string
+    first_name: string,
+    entreprise_id: string,
+    role: string
   ): Promise<Tokens> {
     const [accessToken, refreshToken] = await Promise.all([
       this.jwtService.signAsync(
@@ -97,6 +103,8 @@ export class AuthService {
       first_name: first_name,
       email: email,
       id: userId,
+      entreprise_id: entreprise_id,
+      role: role
     };
   }
 }

@@ -3,7 +3,8 @@ export type Tokens = {
   refresh_token: string;
   name: string;
   first_name: string;
- // TODO : adding role
   email: string;
   id: string;
+  entreprise_id: string;
+  role: string;
 };

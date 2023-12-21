@@ -3,3 +3,4 @@ export * from './get-current-user-id.decorator';
 export * from './public.decorator';
 export * from './password-matches.decorator';
 export * from './roles.decorator';
+export * from './get-current-user-entreprise-id.decorator';

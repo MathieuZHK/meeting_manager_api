@@ -6,6 +6,7 @@ import { UserService } from '../user/service/user.service';
 import { AuthController } from './controller/auth.controller';
 import { AuthService } from './service/auth.service';
 import { AccessTokenStrategy, RefreshTokenStrategy } from './strategies';
+import { UserModule } from "../user/user.module";
 
 @Module({
   imports: [JwtModule.register({})],

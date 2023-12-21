@@ -17,7 +17,6 @@ import { RolesGuard } from "./common/guards";
   controllers: [AppController],
   providers: [
     PrismaService,
-
     {
       provide: APP_GUARD,
       useClass: AtGuard,
